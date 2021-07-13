@@ -6,12 +6,13 @@ export const Wrapper = styled.div`
       rgba(0, 0, 0, 0) 41%,
       rgba(0, 0, 0, 0.65) 100%
     ),
-    url(${(props) => props.image}), var(--darkGrey);
+    url(${({ image }) => image}), var(--darkGrey);
   background-size: 100%, cover;
   background-position: center;
   height: 600px;
   position: relative;
   animation: animateHeroImage 1s;
+
   @keyframes animateHeroImage {
     from {
       opacity: 0;
@@ -29,29 +30,31 @@ export const Content = styled.div`
 `
 
 export const Text = styled.div`
-  z-index: 3;
+  z-index: 100;
   max-width: 700px;
   position: absolute;
   bottom: 40px;
   margin-right: 20px;
   min-height: 100px;
   color: var(--white);
-  font-weight: 200;
 
   h1 {
     font-size: var(--fontSuperBig);
-    @media Screen and (max-width: 720px) {
+
+    @media screen and (max-width: 720px) {
       font-size: var(--fontBig);
     }
   }
+
   p {
     font-size: var(--fontMed);
-    @media screen and (maxwidth: 720px) {
+
+    @media screen and (max-width: 720px) {
       font-size: var(--fontSmall);
     }
   }
 
   @media screen and (max-width: 720px) {
-    font-size: var(--verySmall);
+    max-width: 100%;
   }
 `

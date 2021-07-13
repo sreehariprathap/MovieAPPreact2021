@@ -7,7 +7,7 @@ import { POSTER_SIZE, BACKDROP_SIZE, IMAGE_BASE_URL } from "../config"
 //?COMPONENTS
 
 //?HOOK
-import { useState, useEffect } from "react"
+// import { useState, useEffect } from "react"
 
 //?IMAGE
 import NoImage from "../images/no_image.jpg"
@@ -16,6 +16,10 @@ import NoImage from "../images/no_image.jpg"
 import { useHomeFetch } from "../hooks/useHomeFetch"
 //? HERO IMAGE
 import { HeroImage } from "./HeroImage"
+//? GRID IMPORT
+import { Grid } from "./Grid"
+import { Thumb } from "./Thumb"
+import Spinner from "./Spinner"
 
 export const Home = () => {
   const { state, loading, error } = useHomeFetch()
@@ -31,6 +35,22 @@ export const Home = () => {
           text={state.results[0].overview}
         />
       ) : null}
+
+      <Grid header="Popular movies">
+        {state.results.map((movie) => (
+          <Thumb
+            key={movie.id}
+            clickable
+            image={
+              movie.poster_path
+                ? IMAGE_BASE_URL + POSTER_SIZE + movie.poster_path
+                : NoImage
+            }
+            movieId={movie.id}
+          />
+        ))}
+      </Grid>
+      <Spinner />
     </>
   )
 }
